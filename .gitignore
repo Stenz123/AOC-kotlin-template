@@ -37,3 +37,6 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+## Ignore Input files
+src/main/resources/*.txt
