@@ -39,4 +39,4 @@ bin/
 .DS_Store
 
 ## Ignore Input files
-src/main/resources/*.txt
+src/main/resources/
