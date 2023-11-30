@@ -2,7 +2,7 @@ package days
 
 import java.awt.geom.IllegalPathStateException
 
-abstract class Day {
+abstract class Day (val useExampleInput: Boolean = false) {
     abstract fun partOne(): Any
     abstract fun partTwo(): Any
 
@@ -12,11 +12,28 @@ abstract class Day {
     }
 
     fun readInput(): List<String> {
-        val content = this.javaClass.getResource("../day${getDay()}.txt")
-            ?: throw IllegalStateException("Missing Resource day${getDay()}.txt")
+        val fileName = if (useExampleInput) {
+            "./example.txt"
+        } else {
+            "./input.txt"
+        }
+
+        val content = this.javaClass.getResource(fileName)
+            ?: throw IllegalStateException("Missing Resource days/day${getDay()}/input.txt")
         return content.readText().split("\n")
     }
+    fun solvePartOne() {
+        println("------Solving Day ${getDay()} Part 1------")
+        val solution = partOne()
+        println("------Finished Solving Day ${getDay()} Part 1------")
 
-    fun printPartOne() = println("\u001B[35mDay ${getDay()} Part 1 Solution: \u001b[32m${partOne()}")
-    fun printPartTwo() = println("\u001B[35mDay ${getDay()} Part 2 Solution: \u001b[32m${partTwo()}")
+        println("\u001B[35mDay ${getDay()} Part 1 Solution: \u001b[32m${solution}\u001B[0m")
+    }
+    fun solvePartTwo() {
+        println("------Solving Day ${getDay()} Part 2------")
+        val solution = partTwo()
+        println("------Finished Solving Day ${getDay()} Part 2------")
+
+        println("\u001B[35mDay ${getDay()} Part 2 Solution: \u001b[32m${solution}\u001B[0m")
+    }
 }
